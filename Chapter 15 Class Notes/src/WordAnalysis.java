@@ -10,6 +10,14 @@ import java.io.FileNotFoundException;
  */
 public class WordAnalysis {
 	public static void main(String[] args) throws FileNotFoundException {
+		Set<String> dictionaryWords = readWords("src/words");
+		Set<String> novelWords = readWords("src/alice30.txt");
+
+		for (String word : novelWords) {
+			if (!dictionaryWords.contains(word)) {
+				System.out.println(word);
+			}
+		}
 	}
 
 	/**
@@ -20,6 +28,15 @@ public class WordAnalysis {
 	 *         sequence of upper- and lowercase letters.
 	 */
 	public static Set<String> readWords(String filename) throws FileNotFoundException {
-		return null;
+		Set<String> words = new HashSet<>();
+		Scanner in = new Scanner(new File(filename));
+
+		in.useDelimiter("[^a-zA-Z]+");
+
+		while(in.hasNext()) {
+			words.add(in.next().toLowerCase());
+		}
+
+		return words;
 	}
 }
