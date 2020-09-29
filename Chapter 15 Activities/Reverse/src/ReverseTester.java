@@ -10,9 +10,9 @@ public class ReverseTester {
 		employeeNames.addLast("Harry");
 		employeeNames.addLast("Romeo");
 		employeeNames.addLast("Tom");
-
+		employeeNames.addLast("George");
 		ListUtil.reverse(employeeNames);
 		System.out.println(employeeNames);
-		System.out.println("Expected: [Tom, Romeo, Harry, Dick]");
+		System.out.println("Expected: [George, Tom, Romeo, Harry, Dick]");
 	}
 }
