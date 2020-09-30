@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * A test class for the downsize method.
