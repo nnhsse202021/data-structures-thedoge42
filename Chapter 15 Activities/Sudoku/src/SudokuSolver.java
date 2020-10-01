@@ -36,34 +36,22 @@ public class SudokuSolver {
 
 		rows = new ArrayList<>();
 		cols = new ArrayList<>();
-		squares = new ArrayList<>();
-
 		for (int i = 0; i < N; i++) {
 			Set<Integer> rowSet = new HashSet<>();
-			for (int j = 0; j < N; j++) {
-				if (this.grid[i][j] != 0)
-					rowSet.add(this.grid[i][j]);
-			}
-			this.rows.add(rowSet);
-		}
-
-		for (int i = 0; i < N; i++) {
 			Set<Integer> colSet = new HashSet<>();
 			for (int j = 0; j < N; j++) {
-				if (this.grid[j][i] != 0)
-					colSet.add(this.grid[j][i]);
+				if (this.grid[i][j] != 0) rowSet.add(this.grid[i][j]);
+				if (this.grid[j][i] != 0) colSet.add(this.grid[j][i]);
 			}
+			this.rows.add(rowSet);
 			this.cols.add(colSet);
 		}
 
-		/*
-		 * 0 1 2 3 4 5 6 7 8
-		 */
-
+		squares = new ArrayList<>();
 		for (int i = 0; i < N; i++) {
 			Set<Integer> squareSet = new HashSet<>();
-			for (int j = 3 * (i / 3); j < 3 * (i / 3) + M; j++) {
-				for (int k = 3 * (i % 3); k < 3 * (i % 3) + M; k++) {
+			for (int j = M * (i / M); j < M * (i / M) + M; j++) {
+				for (int k = M * (i % M); k < M * (i % M) + M; k++) {
 					if (this.grid[j][k] != 0)
 						squareSet.add(this.grid[j][k]);
 				}
@@ -72,8 +60,7 @@ public class SudokuSolver {
 		}
 
 		this.nums = new HashSet<>();
-		for (int i = 1; i <= 9; i++)
-			this.nums.add(i);
+		for (int i = 1; i <= N; i++) this.nums.add(i);
 
 		// visually inspect that all the sets are correct
 		for (int row = 0; row < N; row++) {
@@ -89,8 +76,9 @@ public class SudokuSolver {
 	}
 
 	public boolean solve() {
-		// find an empty location, if any
 		boolean finished = true;
+
+		// find an empty location, if any
 		int nextRow = -1;
 		int nextCol = -1;
 		for (int row = 0; row < N && finished; row++) {
@@ -109,21 +97,18 @@ public class SudokuSolver {
 		}
 
 		// get all possible numbers for the row and column we are trying to populate
+		Set<Integer> possibleNums = new HashSet<Integer>(this.nums);
+		
 		/*
 		 * Create a new set based on the this.nums and remove all elements in the sets
-		 * corresponding to nextRow, nextCol, and the corresponding square (use the
-		 * removeAll method).
-		 * 
-		 * Properly indexing the squares list of sets is tricky. Verify that your
-		 * algorithm is correct.
+		 * corresponding to nextRow, nextCol, and the corresponding square.
 		 */
-		Set<Integer> possibleNums = new HashSet<Integer>(this.nums);
 		possibleNums.removeAll(this.rows.get(nextRow));
 		possibleNums.removeAll(this.cols.get(nextCol));
-		int nextSquare = 3 * ((nextRow % 9) / 3) + (nextCol % 9) / 3;
+		int nextSquare = M * (nextRow / M) + (nextCol / M);
 		possibleNums.removeAll(this.squares.get(nextSquare));
-		// if there are no possible numbers, we cannot solve the board in its current
-		// state
+
+		// if there are no possible numbers, we cannot solve the board in its current state
 		if (possibleNums.isEmpty()) {
 			return false;
 		}
@@ -152,25 +137,19 @@ public class SudokuSolver {
 			}
 		}
 
-		return false;
+		return false; //after trying all possibilites, we cannot solve the puzzle in its current state
 	}
 
 	public String toString() {
 		String str = "";
-
-		// for (int[] row : grid) {
-		// for (int val : row) {
-		// str += val + " ";
-		// }
-		// str += "\n";
-		// }
-
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
 				str += this.grid[i][j] + (j % 3 == 2 ? "  " : " ");
 			}
 			str += i % 3 == 2 ? "\n\n" : "\n";
 		}
+
+		str = str.substring(0, str.length() - 1); //remove extra newline character
 
 		return str;
 	}
