@@ -1,8 +1,6 @@
 //HIDE
-public class ToDoListTester
-{
-    public static void main(String[] args)
-    {
+public class ToDoListTester {
+    public static void main(String[] args) {
         ToDoList list = new ToDoList();
         System.out.println("Adding the following 6 items to the list.");
         System.out.println("\"add 1 Complete Programming Exercise 15.11\"");
