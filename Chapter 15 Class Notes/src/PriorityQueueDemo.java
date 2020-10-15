@@ -7,6 +7,6 @@ import java.util.Queue;
  */
 public class PriorityQueueDemo {
 	public static void main(String[] args) {
-
+		
 	}
 }
