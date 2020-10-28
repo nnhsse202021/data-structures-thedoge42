@@ -1,20 +1,18 @@
 /**
-    Testing the LinkedListQueue.firstToLast() method
-*/
-public class QueueTester
-{
-    public static void main(String[] args)
-    {
+ * Testing the LinkedListQueue.firstToLast() method
+ */
+public class QueueTester {
+    public static void main(String[] args) {
         LinkedListQueue q = new LinkedListQueue();
         q.add("Tom");
         q.add("Diana");
         q.add("Harry");
+        q.add("Bob");
         q.firstToLast();
-        while (!q.empty())
-        {
+        while (!q.empty()) {
             System.out.print(q.remove() + " ");
         }
         System.out.println();
-        System.out.println("Expected: Diana Harry Tom");
+        System.out.println("Expected: Diana Harry Bob Tom");
     }
 }

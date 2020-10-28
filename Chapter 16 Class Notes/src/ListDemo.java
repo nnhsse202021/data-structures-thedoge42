@@ -6,6 +6,7 @@ public class ListDemo {
         LinkedList list = new LinkedList();
         list.addElement(2);
         list.addElement(3);
-        System.out.println(list.size());
+
+        System.out.println(list);
     }
 }

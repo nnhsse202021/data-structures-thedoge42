@@ -40,28 +40,6 @@ public class LinkedList {
      * @param element the element to add
      */
 
-    public int size() {
-        Node currentNode = this.first;
-        int size = 0;
-        while (currentNode != null) {
-            currentNode = currentNode.next;
-            size++;
-        }
-        return size;
-    }
-
-    private static int size(Node start) {
-        if (start == null) {
-            return 0;
-        } else {
-            return 1 + size(start.next);
-        }
-    }
-
-    public int recursiveSize() {
-        return size(this.first);
-    }
-
     public void addElement(Object data) {
         Node newNode = new Node();
         newNode.data = data;
