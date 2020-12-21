@@ -15,9 +15,7 @@ import javax.swing.JTextArea;
  * Opens two windows on the screen and starts morse
  * code exchange between them.
  */
-public class Telegraph extends JFrame
-    implements ActionListener
-{
+public class Telegraph extends JFrame implements ActionListener {
   private Telegraph otherStation;
 
   private JTextField inputText;
@@ -26,8 +24,7 @@ public class Telegraph extends JFrame
 
   private static final Font courier16 = new Font("Monospaced", Font.PLAIN, 16);
 
-  public Telegraph(String name)
-  {
+  public Telegraph(String name) {
     super(name);
 
     inputText = new JTextField("Enter a message", 30);
@@ -52,13 +49,11 @@ public class Telegraph extends JFrame
     c.add(receivedText);
   }
 
-  public void connect(Telegraph other)
-  {
+  public void connect(Telegraph other) {
     otherStation = other;
   }
 
-  public void send(String message)
-  {
+  public void send(String message) {
     inputText.setText("");
     receivedText.setText("");
     String code = MorseCode.encode(message);
@@ -66,24 +61,21 @@ public class Telegraph extends JFrame
     otherStation.receive(code);
   }
 
-  public void receive(String code)
-  {
+  public void receive(String code) {
     codedText.setText(">>> [" + code + "]");
     String message = MorseCode.decode(code);
     receivedText.setText(message);
   }
 
-  public void actionPerformed(ActionEvent e)
-  {
+  public void actionPerformed(ActionEvent e) {
     send(inputText.getText());
   }
 
   /******************************************************************/
-  /***************                        main       ****************/
+  /*************** main ****************/
   /******************************************************************/
 
-  public static void main(String[] args)
-  {
+  public static void main(String[] args) {
 
     Telegraph new_york = new Telegraph("New York");
     new_york.setBounds(50, 150, 300, 200);
