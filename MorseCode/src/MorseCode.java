@@ -2,7 +2,6 @@ import java.util.TreeMap;
 
 // import javax.swing.tree.TreeNode;
 
-
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
@@ -75,11 +74,10 @@ public class MorseCode {
     }
 
     /**
-     * Inserts a letter and its Morse code string into the
-     * decoding tree.  Each dot-dash string corresponds to a path
-     * in the tree from the root to a node: at a "dot" go left, at a "dash" go
-     * right.  The node at the end of the path holds the symbol
-     * for that code string. i don't want to talk about it
+     * Inserts a letter and its Morse code string into the decoding tree. Each
+     * dot-dash string corresponds to a path in the tree from the root to a node: at
+     * a "dot" go left, at a "dash" go right. The node at the end of the path holds
+     * the symbol for that code string.
      */
     private static void treeInsert(char letter, String code) {
         TreeNode tempNode = decodeTree;
@@ -118,10 +116,9 @@ public class MorseCode {
     }
 
     /**
-     * Converts a Morse code message into a text string.  Assumes that dot-dash
-     * sequences for each letter are separated by one space.  Additional spaces are
-     * transferred directly into text.
-     * Returns the plain text message.
+     * Converts a Morse code message into a text string. Assumes that dot-dash
+     * sequences for each letter are separated by one space. Additional spaces are
+     * transferred directly into text. Returns the plain text message.
      */
     public static String decode(String morse) {
         StringBuffer text = new StringBuffer(100);
